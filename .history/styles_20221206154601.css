@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+}
+
+#main {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 2fr;
+}
+
+#board {
+  display: inline-grid;
+  grid-template-columns: repeat(var(--height), 2vmin);
+  grid-template-rows: repeat(var(--width), 2vmin);
+}
+
+#side-tool-set {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}

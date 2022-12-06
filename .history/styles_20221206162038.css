@@ -1,0 +1,34 @@
+* {
+  font-size: 40px;
+}
+body {
+  margin: 0;
+}
+
+#main {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 2fr;
+}
+
+#board {
+  user-select: none;
+  display: inline-grid;
+  grid-template-columns: repeat(var(--height), 5vmin);
+  grid-template-rows: repeat(var(--width), 5vmin);
+}
+
+.tile {
+  cursor: pointer;
+}
+
+#side-tool-set {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+}
+#side-tool-set div {
+  cursor: pointer;
+}
+#side-tool-set div:hover {
+  background-color: #ddd;
+}

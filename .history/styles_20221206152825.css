@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#main {
+  display: grid;
+  grid-template-columns: (1fr 2fr);
+}
+
+#board {
+  display: inline-grid;
+  grid-template-columns: repeat(var(--height), 2vmin);
+  grid-template-rows: repeat(var(--width), 2vmin);
+}
