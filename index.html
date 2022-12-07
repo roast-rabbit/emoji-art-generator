@@ -9,31 +9,22 @@
   </head>
   <body>
     <div id="stats">
-      <label for="height">Height</label>
-      <input name="height" type="text" value="10" />
-      <label for="width">Width</label>
-      <input name="width" type="text" value="10" />
-      <div id="current-selection">current selection: <span></span></div>
+      <form>
+        <label for="height">Height</label>
+        <input name="height" type="text" value="10" />
+        <br />
+        <label for="width">Width</label>
+        <input name="width" type="text" value="10" />
+        <button id="resize">resize</button>
+      </form>
+      <div id="current-selection">please select emoji: <span>😍</span></div>
     </div>
     <div id="main">
-      <div id="side-tool-set">
-        <div class="item">😍</div>
-        <div class="item">▶️</div>
-        <div class="item">🔮</div>
-        <div class="item">🎉</div>
-        <div class="item">😘</div>
-        <div class="item">🍮</div>
-        <div class="item">😜</div>
-        <div class="item">😂</div>
-        <div class="item">🙃</div>
-        <div class="item">😋</div>
-        <div class="item">🤓</div>
-        <div class="item">😔</div>
-        <div class="item">😭</div>
-        <div class="item">😜</div>
-      </div>
+      <div id="side-tool-set"></div>
       <div id="board"></div>
-      <script src="index.js"></script>
+      <button id="copy">copy</button>
+
+      <script type="module" src="index.js"></script>
     </div>
   </body>
 </html>

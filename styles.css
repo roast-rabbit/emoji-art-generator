@@ -1,6 +1,6 @@
-* {
+/* * {
   font-size: 40px;
-}
+} */
 body {
   margin: 0;
 }
@@ -11,25 +11,35 @@ body {
   grid-template-columns: 1fr 2fr;
 }
 
+#current-selection span:hover {
+  cursor: pointer;
+}
+
 #board {
+  font-size: 5vmin;
   user-select: none;
   display: inline-grid;
-  grid-template-columns: repeat(var(--height), 5vmin);
-  grid-template-rows: repeat(var(--width), 5vmin);
+  grid-column-start: 2;
+  grid-template-columns: repeat(var(--width), 5vmin);
+  grid-template-rows: repeat(var(--height), 5vmin);
 }
 
 .tile {
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #side-tool-set {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(3, 40px);
+  display: none;
 }
-#side-tool-set div {
+#side-tool-set.shown {
+  display: block;
+}
+
+#copy {
   cursor: pointer;
-}
-#side-tool-set div:hover {
-  background-color: #ddd;
+  grid-column-start: 2;
+  justify-self: start;
 }
