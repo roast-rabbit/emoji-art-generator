@@ -69,6 +69,9 @@ board.addEventListener("mousedown", (e) => {
     board.removeEventListener("mousemove", setEmojiToTarget);
   });
 });
+board.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+});
 
 resizeBtn.addEventListener("click", (e) => {
   e.preventDefault();
