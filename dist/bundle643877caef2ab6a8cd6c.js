@@ -2119,6 +2119,10 @@ function createBoard(height, width) {
 }
 createBoard(height, width);
 var setEmojiToTarget = function setEmojiToTarget(e) {
+  e.preventDefault();
+  if (e.touches) {
+    document.elementFromPoint(e.touches[0].pageX, e.touches[0].pageY).closest(".tile").textContent = currentSelectedEmoji;
+  }
   e.target.closest(".tile").textContent = currentSelectedEmoji;
 };
 var openEmojiPicker = function openEmojiPicker() {
@@ -2141,6 +2145,10 @@ board.addEventListener("mousedown", function (e) {
   document.addEventListener("mouseup", function () {
     board.removeEventListener("mousemove", setEmojiToTarget);
   });
+});
+board.addEventListener("touchstart", function (e) {
+  e.preventDefault();
+  board.addEventListener("touchmove", setEmojiToTarget);
 });
 resizeBtn.addEventListener("click", function (e) {
   e.preventDefault();
@@ -2195,4 +2203,4 @@ function _copyText() {
 copyBtn.addEventListener("click", copyText);
 /******/ })()
 ;
-//# sourceMappingURL=bundlee27bb77ba48828f4b215.js.map
+//# sourceMappingURL=bundle643877caef2ab6a8cd6c.js.map

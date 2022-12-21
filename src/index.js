@@ -41,6 +41,11 @@ createBoard(height, width);
 
 const setEmojiToTarget = (e) => {
   e.preventDefault();
+  if (e.touches) {
+    document
+      .elementFromPoint(e.touches[0].pageX, e.touches[0].pageY)
+      .closest(".tile").textContent = currentSelectedEmoji;
+  }
   e.target.closest(".tile").textContent = currentSelectedEmoji;
 };
 
@@ -69,8 +74,10 @@ board.addEventListener("mousedown", (e) => {
     board.removeEventListener("mousemove", setEmojiToTarget);
   });
 });
+
 board.addEventListener("touchstart", (e) => {
   e.preventDefault();
+  board.addEventListener("touchmove", setEmojiToTarget);
 });
 
 resizeBtn.addEventListener("click", (e) => {
