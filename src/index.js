@@ -40,6 +40,7 @@ function createBoard(height, width) {
 createBoard(height, width);
 
 const setEmojiToTarget = (e) => {
+  e.preventDefault();
   e.target.closest(".tile").textContent = currentSelectedEmoji;
 };
 

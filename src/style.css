@@ -2,11 +2,6 @@ body {
   margin: 0;
 }
 
-#main {
-  /* display: grid; */
-  /* gap: 1rem; */
-  /* grid-template-columns: 1fr 2fr; */
-}
 #current-selection {
   margin-bottom: 10px;
 }
@@ -43,6 +38,7 @@ body {
 }
 
 #copy {
+  padding: 10px 20px;
   cursor: pointer;
   grid-column-start: 2;
   justify-self: start;
