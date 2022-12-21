@@ -1,0 +1,2 @@
+body{margin:0}#current-selection{margin-bottom:10px}#current-selection span:hover{cursor:pointer}#board{display:inline-grid;font-size:var(--size);grid-column-start:2;grid-template-columns:repeat(var(--width),var(--size));grid-template-rows:repeat(var(--height),var(--size));user-select:none}.tile{align-items:center;cursor:pointer;display:flex;justify-content:center}#side-tool-set{display:none}#side-tool-set.shown{display:block;position:absolute}#copy{cursor:pointer;grid-column-start:2;justify-self:start}
+/*# sourceMappingURL=5eadf221104095808e47.css.map*/

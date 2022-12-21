@@ -1,4 +1,5 @@
-import { createPicker } from "https://unpkg.com/picmo@latest/dist/index.js";
+import { createPicker } from "picmo";
+import "./style.css";
 const body = document.querySelector("body");
 const heightInput = document.querySelector("#stats input[name=height]");
 const widthInput = document.querySelector("#stats input[name=width]");
@@ -7,6 +8,8 @@ const board = document.querySelector("#board");
 const currentSelection = document.querySelector("#current-selection span");
 
 const resizeBtn = document.querySelector("#resize");
+
+const copyBtn = document.querySelector("#copy");
 
 // The picker must have a root element to insert itself into
 const sideToolSet = document.querySelector("#side-tool-set");
@@ -23,6 +26,7 @@ function createBoard(height, width) {
   board.innerHTML = "";
   board.style.setProperty("--height", height);
   board.style.setProperty("--width", width);
+  board.style.setProperty("--size", `${90 / width}vmin`);
   for (let i = 0; i < height; i++) {
     for (let j = 0; j < width; j++) {
       const element = document.createElement("div");
@@ -36,7 +40,6 @@ function createBoard(height, width) {
 createBoard(height, width);
 
 const setEmojiToTarget = (e) => {
-  console.log(e.target);
   e.target.closest(".tile").textContent = currentSelectedEmoji;
 };
 
@@ -83,7 +86,6 @@ picker.addEventListener("emoji:select", (event) => {
 });
 
 body.addEventListener("click", (e) => {
-  console.log(e.target.closest("#current-selection"));
   if (
     e.target.closest("#side-tool-set") === sideToolSet ||
     e.target.closest("#current-selection span") === currentSelection
@@ -92,3 +94,19 @@ body.addEventListener("click", (e) => {
   }
   closeEmojiPicker();
 });
+
+async function copyText() {
+  const { clipboard } = navigator;
+  // console.log("copy!");
+  let text = "";
+  const tiles = document.querySelectorAll(".tile");
+  for (let i = 0; i < height; i++) {
+    for (let j = 0; j < width; j++) {
+      text += tiles[i * height + j].textContent;
+    }
+    text += "\n";
+  }
+  await clipboard.writeText(text);
+  // console.log(text);
+}
+copyBtn.addEventListener("click", copyText);

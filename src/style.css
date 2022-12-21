@@ -1,14 +1,14 @@
-/* * {
-  font-size: 40px;
-} */
 body {
   margin: 0;
 }
 
 #main {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: 1fr 2fr;
+  /* display: grid; */
+  /* gap: 1rem; */
+  /* grid-template-columns: 1fr 2fr; */
+}
+#current-selection {
+  margin-bottom: 10px;
 }
 
 #current-selection span:hover {
@@ -16,12 +16,12 @@ body {
 }
 
 #board {
-  font-size: 5vmin;
+  font-size: var(--size);
   user-select: none;
   display: inline-grid;
   grid-column-start: 2;
-  grid-template-columns: repeat(var(--width), 5vmin);
-  grid-template-rows: repeat(var(--height), 5vmin);
+  grid-template-columns: repeat(var(--width), var(--size));
+  grid-template-rows: repeat(var(--height), var(--size));
 }
 
 .tile {
@@ -32,9 +32,13 @@ body {
 }
 
 #side-tool-set {
+  /* margin-bottom: 10px; */
   display: none;
 }
 #side-tool-set.shown {
+  /* margin-bottom: 10px; */
+
+  position: absolute;
   display: block;
 }
 
