@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
     <title><%=htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
@@ -15,13 +19,27 @@
         <label for="width">Width</label>
         <input name="width" type="text" value="10" />
         <button id="resize">resize</button>
+        <button id="copy">copy text</button>
+        <button id="to-picture">to picture</button>
+        <div id="share-buttons">
+          <!-- facebook -->
+          <a class="facebook" target="blank"><i class="fab fa-facebook"></i></a>
+
+          <!-- twitter -->
+          <a class="twitter" target="blank"><i class="fab fa-twitter"></i></a>
+
+          <!-- linkedin -->
+          <a class="linkedin" target="blank"><i class="fab fa-linkedin"></i></a>
+
+          <!-- reddit -->
+          <a class="reddit" target="blank"><i class="fab fa-reddit"></i></a>
+        </div>
       </form>
       <div id="current-selection">please select emoji: <span>😍</span></div>
     </div>
     <div id="main">
       <div id="side-tool-set"></div>
       <div id="board"></div>
-      <button id="copy">copy</button>
     </div>
   </body>
 </html>

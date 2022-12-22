@@ -1,5 +1,19 @@
 import { createPicker } from "picmo";
 import "./style.css";
+const emojiDataPath = `emojibase-data/${navigator.language}/data.json`;
+const messagesPath = `emojibase-data/${navigator.language}/messages.json`;
+import html2canvas from "html2canvas";
+
+let emojiData;
+let messages;
+
+const loadModule = async function () {
+  emojiData = await import("emojibase-data/en/data.json");
+  messages = await import("emojibase-data/en/messages.json");
+};
+
+loadModule();
+
 const body = document.querySelector("body");
 const heightInput = document.querySelector("#stats input[name=height]");
 const widthInput = document.querySelector("#stats input[name=width]");
@@ -10,17 +24,53 @@ const currentSelection = document.querySelector("#current-selection span");
 const resizeBtn = document.querySelector("#resize");
 
 const copyBtn = document.querySelector("#copy");
+const toPicBtn = document.querySelector("#to-picture");
 
 // The picker must have a root element to insert itself into
 const sideToolSet = document.querySelector("#side-tool-set");
 
+// Select social icons
+const fb = document.querySelector(".facebook");
+const twitter = document.querySelector(".twitter");
+const linkedIn = document.querySelector(".linkedin");
+const reddit = document.querySelector(".reddit");
+
+let msg = encodeURIComponent(`I created an emoji art\n${currentText}`);
+
+const title = encodeURIComponent(document.querySelector("title").textContent);
+
+fb.href = `https://www.facebook.com/share.php?u=${link}`;
+
+linkedIn.href = `https://www.linkedin.com/sharing/share-offsite/?url=${link}`;
+
+reddit.href = `http://www.reddit.com/submit?url=${link}&title=${title}`;
+
 // Create the picker
-const picker = createPicker({ rootElement: sideToolSet });
+const picker = createPicker({
+  rootElement: sideToolSet,
+  emojiData,
+  messages,
+  i18n: navigator.language,
+});
 
 let height = heightInput.value;
 let width = widthInput.value;
 
 let currentSelectedEmoji = "😍";
+
+// Current emoji art text
+let currentText = "";
+
+function setCurrentText() {
+  currentText = "";
+  const tiles = document.querySelectorAll(".tile");
+  for (let i = 0; i < height; i++) {
+    for (let j = 0; j < width; j++) {
+      currentText += tiles[i * height + j].textContent;
+    }
+    currentText += "\n";
+  }
+}
 
 function createBoard(height, width) {
   board.innerHTML = "";
@@ -47,6 +97,9 @@ const setEmojiToTarget = (e) => {
       .closest(".tile").textContent = currentSelectedEmoji;
   }
   e.target.closest(".tile").textContent = currentSelectedEmoji;
+  setCurrentText();
+  msg = encodeURIComponent(`I created an emoji art\n${currentText}`);
+  twitter.href = `http://twitter.com/share?&url=${link}&text=${msg}&hashtags=emoji,emojiart`;
 };
 
 const openEmojiPicker = function () {
@@ -65,6 +118,7 @@ const setCurrentEmoji = (emoji) => {
 };
 
 sideToolSet.addEventListener("click", setCurrentEmoji);
+
 board.addEventListener("click", setEmojiToTarget);
 board.addEventListener("mousedown", (e) => {
   e.preventDefault();
@@ -106,9 +160,29 @@ body.addEventListener("click", (e) => {
   closeEmojiPicker();
 });
 
-async function copyText() {
+async function copyText(e) {
+  e.preventDefault();
   const { clipboard } = navigator;
   // console.log("copy!");
+
+  await clipboard.writeText(currentText);
+  // console.log(text);
+}
+copyBtn.addEventListener("click", copyText);
+
+function getScreenShot(e) {
+  e.preventDefault();
+  document.querySelector(".picture")?.remove();
+  let c = document.querySelector("#board"); // or document.getElementById('canvas');
+  html2canvas(c).then((canvas) => {
+    canvas.classList.add("picture");
+    document.body.appendChild(canvas);
+  });
+}
+toPicBtn.addEventListener("click", getScreenShot);
+
+const link = encodeURI(window.location.href);
+function getCurrentEmojiArtText() {
   let text = "";
   const tiles = document.querySelectorAll(".tile");
   for (let i = 0; i < height; i++) {
@@ -117,7 +191,5 @@ async function copyText() {
     }
     text += "\n";
   }
-  await clipboard.writeText(text);
-  // console.log(text);
+  return text;
 }
-copyBtn.addEventListener("click", copyText);

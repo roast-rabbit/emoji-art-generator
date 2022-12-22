@@ -19,6 +19,8 @@
   "homepage": "https://github.com/roast-rabbit/emoji-art-generator#readme",
   "dependencies": {
     "clipboard": "^2.0.11",
+    "emojibase-data": "^7.0.1",
+    "html2canvas": "^1.4.1",
     "path": "^0.12.7",
     "picmo": "^5.7.2"
   },
