@@ -10404,15 +10404,17 @@ function getScreenShot(e) {
   (_document$querySelect = document.querySelector(".picture")) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.remove();
   var c = document.querySelector("#board"); // or document.getElementById('canvas');
   html2canvas_default()(c).then(function (canvas) {
-    canvas.classList.add("picture");
-    document.body.appendChild(canvas);
-    var dataUrl = canvas.toDataURL();
-    var meta = document.createElement("meta");
-    meta.name = "twitter:image";
-    meta.content = dataUrl;
-    document.querySelector("head").appendChild(meta);
+    // canvas.classList.add("picture");
+    // document.body.appendChild(canvas);
+    var dataUrl = canvas.toDataURL().replace("image/png", "image/octet-stream");
+    window.location.href = dataUrl;
+    // const meta = document.createElement("meta");
+    // meta.name = "twitter:image";
+    // meta.content = dataUrl;
+    // document.querySelector("head").appendChild(meta);
   });
 }
+
 toPicBtn.addEventListener("click", getScreenShot);
 var src_link = encodeURI(window.location.href);
 function getCurrentEmojiArtText() {
@@ -10430,4 +10432,4 @@ function getCurrentEmojiArtText() {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle2b2a8567b9c655c16a79.js.map
+//# sourceMappingURL=bundle65c63b26dc480ec20dbb.js.map

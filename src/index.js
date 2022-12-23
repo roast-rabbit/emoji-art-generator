@@ -175,13 +175,16 @@ function getScreenShot(e) {
   document.querySelector(".picture")?.remove();
   let c = document.querySelector("#board"); // or document.getElementById('canvas');
   html2canvas(c).then((canvas) => {
-    canvas.classList.add("picture");
-    document.body.appendChild(canvas);
-    const dataUrl = canvas.toDataURL();
-    const meta = document.createElement("meta");
-    meta.name = "twitter:image";
-    meta.content = dataUrl;
-    document.querySelector("head").appendChild(meta);
+    // canvas.classList.add("picture");
+    // document.body.appendChild(canvas);
+    const dataUrl = canvas
+      .toDataURL()
+      .replace("image/png", "image/octet-stream");
+    window.location.href = dataUrl;
+    // const meta = document.createElement("meta");
+    // meta.name = "twitter:image";
+    // meta.content = dataUrl;
+    // document.querySelector("head").appendChild(meta);
   });
 }
 toPicBtn.addEventListener("click", getScreenShot);
