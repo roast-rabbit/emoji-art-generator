@@ -10406,6 +10406,11 @@ function getScreenShot(e) {
   html2canvas_default()(c).then(function (canvas) {
     canvas.classList.add("picture");
     document.body.appendChild(canvas);
+    var dataUrl = canvas.toDataURL();
+    var meta = document.createElement("meta");
+    meta.name = "twitter:image";
+    meta.content = dataUrl;
+    document.querySelector("head").appendChild(meta);
   });
 }
 toPicBtn.addEventListener("click", getScreenShot);
@@ -10425,4 +10430,4 @@ function getCurrentEmojiArtText() {
 
 /******/ })()
 ;
-//# sourceMappingURL=bundled8c3e27d1a736170cf91.js.map
+//# sourceMappingURL=bundle2b2a8567b9c655c16a79.js.map

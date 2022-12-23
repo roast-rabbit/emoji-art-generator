@@ -177,6 +177,11 @@ function getScreenShot(e) {
   html2canvas(c).then((canvas) => {
     canvas.classList.add("picture");
     document.body.appendChild(canvas);
+    const dataUrl = canvas.toDataURL();
+    const meta = document.createElement("meta");
+    meta.name = "twitter:image";
+    meta.content = dataUrl;
+    document.querySelector("head").appendChild(meta);
   });
 }
 toPicBtn.addEventListener("click", getScreenShot);
